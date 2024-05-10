@@ -1,9 +1,13 @@
+import PorfolioLayout from "@/components/Layouts/PorfolioLayout"
+import SideLayout from "@/components/Layouts/SideLayout"
+
 export default function Home() {
   return (
-    <main className="flex min-h-screen items-center justify-between p-24">
-      <div>hello</div>
-      <div>hello</div>
-      <div>hello</div>
+    <main className="max-h-screen flex flex-col">
+      <div className="flex">
+        <SideLayout />
+        <PorfolioLayout />
+      </div>
     </main>
   )
 }
