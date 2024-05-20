@@ -1,5 +1,5 @@
-import PorfolioLayout from "@/components/Layouts/PorfolioLayout"
-import SideLayout from "@/components/Layouts/SideLayout"
+import PorfolioLayout from "@/components/layouts/PorfolioLayout"
+import SideLayout from "@/components/layouts/SideLayout"
 
 export default function Home() {
   return (

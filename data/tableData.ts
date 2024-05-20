@@ -10,6 +10,7 @@ type Data = {
   balance: string
   value: string
   webDetail: string
+  actions?: any
 }
 
 export const tableData: Array<Data> = [

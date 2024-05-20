@@ -1,15 +1,24 @@
 "use client"
 
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import Switch from "@mui/material/Switch"
 import { Button } from "@mui/material"
 import { Plus } from "lucide-react"
 import { getRandomAvatar } from "@/utils/shared"
 import SearchCoinModal from "./SearchCoinModal"
+import coinData from "../data/json/coin-list-data.json"
 
 type Event = React.ChangeEvent<HTMLInputElement>
 
+type Coin = {
+  id: string
+  name: string
+  symbol: string
+}
+
 const ChartBoxHeader = () => {
+  const [coins, setCurrencies] = useState<Array<Coin>>([])
+  const [loading, setLoading] = useState(false)
   const [checked, setChecked] = useState(true)
   const [modalOpen, setOpen] = React.useState(false)
   const handleOpen = () => setOpen(true)
@@ -18,6 +27,24 @@ const ChartBoxHeader = () => {
   const handleChange = (event: Event) => {
     setChecked(event.target.checked)
   }
+
+  const getCoinList = async () => {
+    try {
+      // const response = await getCurrencies()
+      // setCurrencies(response)
+      // console.log(response)
+
+      setLoading(true)
+      setCurrencies(coinData)
+      setLoading(false)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    getCoinList()
+  }, [])
 
   return (
     <div className="flex justify-between items-center mt-5 flex-shrink-0">
@@ -47,7 +74,12 @@ const ChartBoxHeader = () => {
             Add Transaction
           </Button>
           {modalOpen && (
-            <SearchCoinModal isOpen={modalOpen} handleClose={handleClose} />
+            <SearchCoinModal
+              coinList={coins}
+              isOpen={modalOpen}
+              handleClose={handleClose}
+              loading={loading}
+            />
           )}
         </div>
         <div>

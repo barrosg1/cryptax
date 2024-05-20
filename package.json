@@ -4,16 +4,19 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "prism db push && next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
+    "@mui/joy": "^5.0.0-beta.36",
     "@mui/material": "^5.15.17",
+    "@mui/x-date-pickers": "^7.3.2",
     "@nivo/pie": "^0.86.0",
     "chart.js": "^4.4.2",
+    "dayjs": "^1.11.11",
     "lucide-react": "^0.378.0",
     "next": "14.2.3",
     "prisma": "^4.8.1",
