@@ -17,6 +17,7 @@ const config: Config = {
           text: colors.neutral[500],
           dark: colors.neutral[800],
           ["light-gray"]: "#f2f1f2",
+          red: colors.red[500],
         },
       },
     },

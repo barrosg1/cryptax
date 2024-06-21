@@ -11,34 +11,66 @@ datasource db {
 }
 
 model Asset {
-  id         Int      @id @default(autoincrement())
-  name       String
-  symbol     String
-  slug       String   @unique
-  allocation String
-  balance    Float
-  value      Float
-  webDetail  String
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+  id                String            @id @default(cuid())
+  name              String
+  symbol            String
+  slug              String?           @unique
+  allocation        String?
+  balance           Float?
+  value             Float?
+  network           String?
+  website           String?
+  buy_transactions  BuyTransaction[]
+  sell_transactions SellTransaction[]
+  portfolio_id      String
+  portfolio         Portfolio         @relation(fields: [portfolio_id], references: [id])
+  created_at        DateTime          @default(now())
+  updated_at        DateTime          @updatedAt
 }
 
-model Transaction {
-  id           Int       @id @default(autoincrement())
-  order_type   OrderType
-  asset        String
-  quantity     Float
-  pricePerCoin Float
-  bought_date  DateTime
-  bought_time  String
-  sold_date    DateTime
-  sold_time    DateTime
-  notes        String
-  created_at   DateTime  @default(now())
-  updated_at   DateTime  @updatedAt
+model BuyTransaction {
+  id               String    @id @default(cuid())
+  quantity         Float
+  pricePerCoin     Float
+  bought_date      DateTime
+  bought_time      DateTime?
+  notes            String?
+  trading_platform String
+  category         String
+  market_cap       Float?
+  asset_id         String
+  asset            Asset     @relation(fields: [asset_id], references: [id])
+  created_at       DateTime  @default(now())
+  updated_at       DateTime  @updatedAt
 }
 
-enum OrderType {
-  BUY
-  SELL
+model SellTransaction {
+  id               String    @id @default(cuid())
+  quantity         Float
+  pricePerCoin     Float
+  sold_date        DateTime
+  sold_time        DateTime?
+  notes            String?
+  category         String
+  market_cap       Float?
+  trading_platform String
+  asset_id         String
+  asset            Asset     @relation(fields: [asset_id], references: [id])
+  created_at       DateTime  @default(now())
+  updated_at       DateTime  @updatedAt
+}
+
+model Portfolio {
+  id     String  @id @default(cuid())
+  name   String
+  total  Float?
+  slug   String  @unique
+  assets Asset[]
+}
+
+model Overview {
+  id            String @id @default(cuid())
+  totalInvested Float  @default(0)
+  totalSold     Float  @default(0)
+  totalProfit   Float  @default(0)
 }

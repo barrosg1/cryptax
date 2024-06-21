@@ -6,7 +6,6 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs"
 import { TimePicker } from "@mui/x-date-pickers/TimePicker"
 import {
   PickerChangeHandlerContext,
-  DateValidationError,
   TimeValidationError,
 } from "@mui/x-date-pickers"
 

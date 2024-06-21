@@ -1,13 +1,12 @@
-import PorfolioLayout from "@/components/layouts/PorfolioLayout"
-import SideLayout from "@/components/layouts/SideLayout"
+import { PortfolioSection } from "@/components/PortfolioSection"
+import { getPortfolios } from "@/lib/portfolio"
 
-export default function Home() {
+export default async function Home() {
+  const portfolios = await getPortfolios()
+
   return (
-    <main className="max-h-screen flex flex-col">
-      <div className="flex">
-        <SideLayout />
-        <PorfolioLayout />
-      </div>
-    </main>
+    <div className="flex w-full">
+      <PortfolioSection portfolios={portfolios} />
+    </div>
   )
 }

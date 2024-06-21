@@ -6,7 +6,7 @@ export const getCurrencies = async () => {
         method: "get",
         headers: {
           accept: "application/json",
-          "x-cg-demo-api-key": "CG-xSEcHvFYKvd9TmXYW5f2dz3n",
+          "x-cg-demo-api-key": `${process.env.COIN_GECKO_API_KEY}`,
         },
       }
     )
@@ -26,7 +26,7 @@ export const getCurrency = async (coinId: string) => {
         method: "get",
         headers: {
           accept: "application/json",
-          "x-cg-demo-api-key": "CG-xSEcHvFYKvd9TmXYW5f2dz3n",
+          "x-cg-demo-api-key": `${process.env.COIN_GECKO_API_KEY}`,
         },
       }
     )
